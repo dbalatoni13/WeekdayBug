@@ -1,6 +1,7 @@
 package de.kabiskac.weekdaybug.ui.main
 
 import android.os.Bundle
+import android.os.Handler
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -15,7 +16,7 @@ import de.kabiskac.weekdaybug.databinding.Fragment2Binding
 
 class Fragment1 : Fragment() {
 
-
+    private val handler = Handler()
     private lateinit var viewModel: MainViewModel
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
@@ -24,9 +25,11 @@ class Fragment1 : Fragment() {
             inflater,
             R.layout.fragment1, container, false
         )
-        viewModel = ViewModelProvider(this).get(MainViewModel::class.java)
+        viewModel = ViewModelProvider(requireActivity()).get(MainViewModel::class.java)
 
-        binding.viewmodel = viewModel
+        handler.post {
+            binding.viewmodel = viewModel
+        }
 
         binding.lifecycleOwner = viewLifecycleOwner
 
