@@ -22,7 +22,7 @@ class Fragment2 : Fragment() {
             inflater,
             R.layout.fragment2, container, false
         )
-        viewModel = ViewModelProvider(this).get(MainViewModel::class.java)
+        viewModel = ViewModelProvider(requireActivity()).get(MainViewModel::class.java)
 
         binding.lifecycleOwner = viewLifecycleOwner
 
